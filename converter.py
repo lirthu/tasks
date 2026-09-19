@@ -9,7 +9,7 @@ def get_json_data(link):
 def converter_valute(amount, valute_name, json_data):
     get_value = json_data['Valute'][valute_name]['Value']
     total = amount * get_value
-    return total
+    return round(total, 2)
 
 if __name__ == '__main__':
 
