@@ -7,9 +7,12 @@ def get_json_data(link):
     return data_json
 
 def converter_valute(amount, valute_name, json_data):
-    get_value = json_data['Valute'][valute_name]['Value']
-    total = amount * get_value
-    return round(total, 2)
+    try:
+        get_value = json_data['Valute'][valute_name]['Value']
+        total = amount * get_value
+        return round(total, 2)
+    except Exception as e:
+        return f'Валюта {e} не найдена!'
 
 if __name__ == '__main__':
 
@@ -19,5 +22,4 @@ if __name__ == '__main__':
     parser.add_argument('amount', type=int, help='amount of valute to convert')
     parser.add_argument('valute', type=str, help='type of valute to convert into rubles')
     args = parser.parse_args()
-
     print(converter_valute(args.amount, args.valute, get_json_data(get_link)))
