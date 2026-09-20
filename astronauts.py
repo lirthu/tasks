@@ -24,7 +24,7 @@ def get_current_date():
     return today
 
 def getting_people(json_data):
-    print('Общее количество людей: ', json_data['number'])
+    print(f'Общее количество людей: {json_data['number']}')
     for i in json_data['people']:
         print(i['name'], i['craft'])
 
