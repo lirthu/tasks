@@ -31,10 +31,11 @@ def getting_people(json_data):
 def data_writing_json(current_date, json_data):
     with open(f"astros_{current_date}.json", 'w', encoding='utf-8') as file:
         for i in json_data['people']:
-            jd = {i['name']: i['craft']}
-            json.dump(jd, file, indent=4, ensure_ascii=False)
+            dictionary = {i['name']: i['craft']}
+            json.dump(dictionary, file, indent=4, ensure_ascii=False)
 
 if __name__ == '__main__':
     link = 'http://api.open-notify.org/astros.json'
-    getting_people(retry_request(link))
-    data_writing_json(get_current_date(), retry_request(link))
+    data = retry_request(link)
+    getting_people(data)
+    data_writing_json(get_current_date(), data)
