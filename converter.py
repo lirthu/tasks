@@ -2,9 +2,14 @@ import argparse
 import requests
 
 def get_json_data(link):
-    response = requests.get(link)
-    data_json = response.json()
-    return data_json
+    try:
+        response = requests.get(link)
+        if response:
+            data_json = response.json()
+            return data_json
+    except Exception as error:
+        return error
+
 
 def converter_valute(amount, valute_name, json_data):
     try:
@@ -15,9 +20,7 @@ def converter_valute(amount, valute_name, json_data):
         return f'Валюта {e} не найдена!'
 
 if __name__ == '__main__':
-
     get_link = 'https://www.cbr-xml-daily.ru/daily_json.js'
-
     parser = argparse.ArgumentParser(description='Valute to RUB')
     parser.add_argument('amount', type=int, help='amount of valute to convert')
     parser.add_argument('valute', type=str, help='type of valute to convert into rubles')

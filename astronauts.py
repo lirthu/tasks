@@ -9,6 +9,7 @@ def retry_request(url, max_tries=3,delay=2):
             response = requests.get(url)
             if response:
                 json_data = response.json()
+                print(attempt)
                 return json_data
         except requests.RequestException:
             if attempt < max_tries - 1:
@@ -18,21 +19,30 @@ def retry_request(url, max_tries=3,delay=2):
                 raise
 
 def get_current_date():
-    today = datetime.today()
-    time_format = "%Y-%m-%d"
-    today = f"{today:{time_format}}"
-    return today
+    try:
+        today = datetime.today()
+        time_format = "%Y-%m-%d"
+        today = f"{today:{time_format}}"
+        return today
+    except Exception as error:
+        print(error)
 
 def getting_people(json_data):
-    print(f'Общее количество людей: {json_data['number']}')
-    for i in json_data['people']:
-        print(i['name'], i['craft'])
+    try:
+        print(f'Общее количество людей: {json_data['number']}')
+        for i in json_data['people']:
+            print(i['name'], i['craft'])
+    except Exception as error:
+        print(error)
 
 def data_writing_json(current_date, json_data):
-    with open(f"astros_{current_date}.json", 'w', encoding='utf-8') as file:
-        for i in json_data['people']:
-            dictionary = {i['name']: i['craft']}
-            json.dump(dictionary, file, indent=4, ensure_ascii=False)
+    try:
+        with open(f"astros_{current_date}.json", 'w', encoding='utf-8') as file:
+            for i in json_data['people']:
+                dictionary = {i['name']: i['craft']}
+                json.dump(dictionary, file, indent=4, ensure_ascii=False)
+    except Exception as error:
+        print(error)
 
 if __name__ == '__main__':
     link = 'http://api.open-notify.org/astros.json'
