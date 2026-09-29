@@ -10,4 +10,4 @@ def get_weather(url):
 
 if __name__ == '__main__':
     link = 'https://wttr.in/Москва?M?T?&lang=ru'
-    get_weather(link)
+    print(get_weather(link))
