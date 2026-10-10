@@ -4,12 +4,9 @@ import time
 from datetime import datetime
 import json
 
-logger = logging.getLogger(__name__)
-
 def config_logger():
     logging.basicConfig(level=logging.INFO,
                         filemode='w',
-                        filename='logs.log',
                         format='[%(asctime)s.%(msecs)03d] %(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s',
                         encoding='utf-8'
                         )
@@ -27,7 +24,7 @@ def retry_request(url, max_tries=3,delay=2):
             if attempt < max_tries - 1:
                 time.sleep(delay)
             else:
-                logger.error('Превышено число попыток')
+                logging.error('Превышено число попыток')
                 raise
 
 def get_current_date():
@@ -37,15 +34,15 @@ def get_current_date():
         today = f"{today:{time_format}}"
         return today
     except Exception as error:
-        logger.error(f'Ошибка: {error}')
+        logging.error(f'Ошибка: {error}')
 
 def get_people_in_space(json_data):
     try:
-        logger.info(f'Общее количество людей: {json_data['number']}')
+        logging.info(f'Общее количество людей: {json_data['number']}')
         for i in json_data['people']:
-            logger.info(f'{i['name']:<20} - {i['craft']}')
+            logging.info(f'{i['name']:<20} - {i['craft']}')
     except Exception as error:
-        logger.error(f'{error}')
+        logging.error(f'{error}')
 
 def writing_data_to_json(current_date, json_data):
     try:
@@ -54,7 +51,7 @@ def writing_data_to_json(current_date, json_data):
                 dictionary = {i['name']: i['craft']}
                 json.dump(dictionary, file, indent=4, ensure_ascii=False)
     except Exception as error:
-        logger.error(f'Ошибка: {error}')
+        logging.error(f'Ошибка: {error}')
 
 if __name__ == '__main__':
     config_logger()
