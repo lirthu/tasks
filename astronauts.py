@@ -34,7 +34,7 @@ def get_current_date():
         today = f"{today:{time_format}}"
         return today
     except Exception as error:
-        logging.error(f'Ошибка: {error}')
+        logging.debug(f'Ошибка: {error}')
 
 def get_people_in_space(json_data):
     try:
