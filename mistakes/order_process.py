@@ -7,9 +7,6 @@ def process_order(order):
         total = 0
         for item in order["items"]:
             total = total + item["price"]
-        # if order["status"] == "new":
-        #     return total
-        # else:
         return total
     else:
         return 0
