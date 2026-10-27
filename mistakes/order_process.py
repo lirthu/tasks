@@ -6,7 +6,7 @@ def process_order(order):
     if len(order["items"]) > 0:
         total = 0
         for item in order["items"]:
-            total = total + item["price"]
+            total = total + order['items'][item]["price"]
         return total
     else:
         return 0
