@@ -10,5 +10,3 @@ def register_user(name, age, email):
     if "@" not in email or '.' not in email:
         return {"status": "invalid email"}
     return {"status": "ok"}
-
-print(register_user('Alex', 0, 'lirthu333@gmailc.om'))
