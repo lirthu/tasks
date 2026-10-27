@@ -1,7 +1,7 @@
 def register_user(name, age, email):
     if not name:
         return {"status": "no name"}
-    if not age:
+    if age is None:
         return {"status": "no age"}
     if age < 18:
         return {"status": "too young"}
@@ -10,3 +10,5 @@ def register_user(name, age, email):
     if "@" not in email or '.' not in email:
         return {"status": "invalid email"}
     return {"status": "ok"}
+
+print(register_user('Alex', 0, 'lirthu333@gmailc.om'))
