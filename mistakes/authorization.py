@@ -14,7 +14,7 @@ def login2(user):
         (user is None, "Пользователь не найден"),
         (user.get('active'), "Неактивен"),
         (user.get("banned"), "Забанен"),
-        (user.get("password") != user.get("password_hash"), "Неверный пароль")
+        ((user.get("password") != user.get("password_hash")), "Неверный пароль")
     ]
     for condition, message in result:
         if condition:
