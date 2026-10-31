@@ -9,12 +9,14 @@ def login1(user):
         return "Неверный пароль"
     return "OK"
 
+
 def login2(user):
     result = [
         (user is None, "Пользователь не найден"),
         (not user.get('active'), "Неактивен"),
         (user.get("banned"), "Забанен"),
-        ((user.get("password") != user.get("password_hash")), "Неверный пароль")
+        ((user.get("password") != user.get("password_hash")),
+         "Неверный пароль")
     ]
     for condition, message in result:
         if condition:

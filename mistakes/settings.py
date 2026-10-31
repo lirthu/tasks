@@ -1,8 +1,10 @@
 DEFAULT_SETTINGS = {"theme": "light", "lang": "ru"}
 
+
 def update_settings(new_settings):
     settings = DEFAULT_SETTINGS | new_settings
     return settings
+
 
 # Вызов 1
 update_settings({"theme": "dark"})
