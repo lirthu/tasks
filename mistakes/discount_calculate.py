@@ -1,7 +1,19 @@
 DISCOUNT = {
-    'user_vip' : {'order_amount' : 10000, 'discount_type': {'vip_high_discount' : 0.85, 'vip_low_discount' : 0.9}},
-    'user_standard' : {'order_amount' : 5000, 'discount_type' : {'standard_discount' : 0.95}}
+    'user_vip': {
+        'order_amount': 10000,
+        'discount_type': {
+            'vip_high_discount': 0.85,
+            'vip_low_discount': 0.9
+        }
+    },
+    'user_standard': {
+        'order_amount': 5000,
+        'discount_type': {
+            'standard_discount': 0.95
+        }
+    }
 }
+
 
 def calculate_discount(user, total):
     if user is None:
